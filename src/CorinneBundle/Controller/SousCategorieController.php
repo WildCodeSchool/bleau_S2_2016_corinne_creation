@@ -85,8 +85,8 @@ class SousCategorieController extends Controller
     public function deleteAction($id){
         $em = $this->getDoctrine()->getManager();
         $scateg = $em->getRepository('CorinneBundle:SousCategorie')->findOneById($id);
-// condition si objet vide supprimer
 
+// condition si objet vide supprimer
 //        var_dump($scateg->getObjet());
 
         if ($scateg->getObjet() != null){
