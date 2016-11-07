@@ -34,7 +34,6 @@ corinne_admin:
     prefix: /
     resource: routing/admin.yml
 
-
 contact_new:
     path:     /new
     defaults: { _controller: "CorinneBundle:Contact:new" }
