@@ -34,8 +34,8 @@
                                 </div>
                                 <div class="row">
                                     <li class="col s12 m12 offset-m1">
-                                        <a href="{{ path('contact_new') }}"><span id="idContact" class="navTextCC">Contact</span></a>
-                                        {#<a class="modal-trigger" href="#modal1"><span id="idContact" class="navTextCC">Contact</span></a>#}
+                                        {#<a href="{{ path('contact_new') }}"><span id="idContact" class="navTextCC">Contact</span></a>#}
+                                        <a class="modal-trigger" href="#modal1"><span id="idContact" class="navTextCC">Contact</span></a>
                                     </li>
                                 </div>
                             </ul>
@@ -71,6 +71,8 @@
     <div id="modal1" class="modal">
         <div class="modal-content">
             {#{{ render(controller('CorinneBundle:Default:contact')) }}#}
+            {{ render(controller('CorinneBundle:Contact:new')) }}
+
         </div>
     </div>
 

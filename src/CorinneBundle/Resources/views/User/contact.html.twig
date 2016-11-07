@@ -1,5 +1,6 @@
 {% extends '@Corinne/layout.html.twig' %}
-{% block header %} {% endblock %}
+
+{% block header %}{% endblock %}
 
 {% block body %}
 
@@ -88,7 +89,7 @@
                                     {% do form.isSave.setRendered %}
                                 </div>
 
-                                {{ dump(form) }}
+
 
                                 {#Boutons#}
 
@@ -115,6 +116,8 @@
             </div>
         </main>
     </div>
+{% endblock %}
 
 
+{% block footer %}
 {% endblock %}
