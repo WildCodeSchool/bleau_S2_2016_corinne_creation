@@ -44,15 +44,26 @@ class PresseController extends Controller
             $em->persist($presse);
             $em->flush();
 
+            $this->addFlash (
+                'success',
+                'Presse ajoutée avec succès');
+
             return $this->redirectToRoute('presse_index', array('id' => $presse->getId()));
         }
+        else {
+            $this->addFlash(
+                'error',
+                'Une erreur est survenue lors de l\'ajout de la presse'
 
+            );
+        }
         return $this->render('@Corinne/admin/presse/new.html.twig', array(
             'presse' => $presse,
             'form' => $form->createView(),
         ));
 
     }
+
 
     /**
      * Displays a form to edit an existing Presse entity.
@@ -69,7 +80,17 @@ class PresseController extends Controller
             $em->persist($presse);
             $em->flush();
 
+            $this->addFlash(
+                'success',
+                'Presse modifiée avec succès'
+            );
+
             return $this->redirectToRoute('presse_index', array('id' => $presse->getId()));
+        }
+        else{
+            $this->addFlash(
+                'error',
+                'Une erreur est survenue lors de la mise à jour de la presse');
         }
 
         return $this->render('@Corinne/admin/presse/edit.html.twig', array(
@@ -87,13 +108,32 @@ class PresseController extends Controller
         $em = $this->getDoctrine()->getManager();
         $presse = $em->getRepository('CorinneBundle:Presse')->findOneById($id);
         $fileName = 'uploads/pictures/' . $presse->getSource();
-        if(file_exists($fileName)) {
-            unlink($fileName);
-        }
-        $em->remove($presse);
-        $em->flush();
+//        if(file_exists($fileName)) {
+//            unlink($fileName);
+//        }
+//        $em->remove($presse);
+//        $em->flush();
 
-        return $this->redirectToRoute('presse_index');
+        if (isset($fileName)){
+            $this->addFlash(
+                'error',
+                'Une erreur est survenue lors de la suppression de la presse'
+            );
+            return $this->redirectToRoute('souscategorie_index');
+        }
+        else{
+            $this->addFlash(
+                'success',
+                'presse supprimer avec succès'
+            );
+
+            $em->remove($sous_scateg);
+            $em->flush();
+
+            return $this->redirectToRoute('presse_index');
+        }
+
+//        return $this->redirectToRoute('presse_index');
 
     }
 
