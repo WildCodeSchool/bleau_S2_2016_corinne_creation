@@ -42,7 +42,7 @@ class ObjetController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             // $file stores the uploaded PDF file
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+//            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $objet->getSource();
 
             // Generate a unique name for the file before saving it
@@ -58,7 +58,7 @@ class ObjetController extends Controller
             // instead of its contents
             $objet->setSource($fileName);
 
-
+            $objet->setCateg($objet->getSousCateg()->getCategorie());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($objet);
@@ -92,7 +92,7 @@ class ObjetController extends Controller
 
 
             // $file stores the uploaded PDF file
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+//            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $objet->getSource();
 
             // Generate a unique name for the file before saving it
@@ -108,9 +108,10 @@ class ObjetController extends Controller
             // instead of its contents
             $objet->setSource($fileName);
 
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($objet);
+
+
             $em->flush();
 
             return $this->redirectToRoute('objet_index', array('id' => $objet->getId()));
