@@ -32,6 +32,7 @@ function init_corinne()
     $(".button-collapse").sideNav();
     $('#contact-body').hide();
 
+
     $("#contact-body").hide().show(1000).css("display", "block");
     $("#access-body").hide().show(2000).css("display" ,"block");
 

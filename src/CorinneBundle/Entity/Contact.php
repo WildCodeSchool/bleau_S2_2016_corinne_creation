@@ -17,6 +17,42 @@ class Contact
 
     }
 
+    /**
+     * @var int
+     */
+    private $isSave;
+    public function setIsSave(int $isSave) {
+            $this->isSave = $isSave;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIsSave()
+    {
+        return $this->isSave;
+    }
+
+    /**
+     * @var string
+     */
+    private $texte;
+
+    /**
+     * @param string $texte
+     */
+    public function setTexte(string $texte)
+    {
+        $this->texte = $texte;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTexte()
+    {
+        return $this->texte;
+    }
 
 //    GENERATED CODE
 

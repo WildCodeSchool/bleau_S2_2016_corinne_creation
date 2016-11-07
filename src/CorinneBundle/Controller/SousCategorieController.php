@@ -104,6 +104,7 @@ class SousCategorieController extends Controller
                 'error',
                 'Vous ne pouvez pas supprimer la sous categorie si des oeuvres y sont associées'
             );
+
             return $this->redirectToRoute('souscategorie_index');
         }
         else{
