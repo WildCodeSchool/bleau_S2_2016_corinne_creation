@@ -33,128 +33,76 @@ class ContactController extends Controller
      *
      */
     public function newAction(Request $request){
+        $contact = new Contact();
+        $form = $this->createForm('CorinneBundle\Form\ContactType', $contact);
+        $form->handleRequest($request);
 
-//        $routeName = $this->container->get('request')->get('_route');
-        $check = $request->request->get('check');
-        $text = $request->request->get('text');
-        $mail = $request->request->get('email');
+        if ($form->isSubmitted() && $form->isValid()) {
 
-//        var_dump($request->request->get('check')) .'\n';
-//        var_dump($request->request->get('nom')) .'\n';
-//        var_dump($request->request->get('prenom')) .'\n';
-//        var_dump($request->request->get('tel')) .'\n';
-//        var_dump($request->request->get('email')) .'\n';
-//        var_dump($request->request->get('text')); die();
+            if($contact->getIsSave() == 1) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($contact);
+                $em->flush();
+            }
 
-
-        if ( $check == "on") {
-
-//          ENREGISTREMENT DU CONTACT ET ENVOI DU MAIL
-            $contact = new Contact();
-            $contact->setNom ($request->request->get ('nom'));
-            $contact->setPrenom ($request->request->get ('prenom'));
-            $contact->setTel ($request->request->get ('tel'));
-            $contact->setMail ($request->request->get ('email'));
-
-
-
-                $em = $this->getDoctrine ()->getManager ();
-                $em->persist ($contact);
-                $em->flush ();
-
-//               ENVOI DU MAIL
-            $from = $this->getParameter('mailer_user');
+            //   envoi email et message au client
+            $name = $contact->getNom() . ' ' . $contact->getPrenom();
             $message = \Swift_Message::newInstance()
                 ->setSubject('Contact Corinne Création')
-                ->setFrom(array($from => 'allard.corinne@laposte.net'))
-                ->setTo($from)
+                ->setFrom('allard.corinne@laposte.net')
+                ->setTo($contact->getMail())
                 ->setBody(
                     $this->renderView(
-                        '@Corinne/User/mailclient.html.twig',
-                        array(
-                            'nom' => $contact,
-                            'prenom' => $contact,
-                            'mail' => $contact,
-                            'tel' => $contact,
-                            'text' => $text
-                        )
-                    ),
-                    'text/html'
-                );
-            $message2 = \Swift_Message::newInstance()
-                ->setSubject('Copie Contact Corinne Création')
-                ->setFrom(array($from => 'allard.corinne@laposte.net'))
-                ->setTo($mail)
-                ->setBody(
-                    $this->renderView(
-                        '@Corinne/User/mailcorinnecreation.html.twig',
-                        array(
-                            'nom' => $contact,
-                            'prenom' => $contact,
-                            'mail' => $contact,
-                            'tel' => $contact,
-                            'text' => $text
-                        )
-                    ),
-                    'text/html'
-                );
+                    // app/Resources/views/Emails/registration.html.twig
+                        'CorinneBundle:Emails:client.html.twig', array('name' => $name)
+                    ), 'text/html'
+                )
+                /*
+                 * If you also want to include a plaintext version of the message
+                  ->addPart(
+                  $this->renderView(
+                  'Emails/registration.txt.twig',
+                  array('name' => $name)
+                  ),
+                  'text/plain'
+                  )
+                 */
+            ;
             $this->get('mailer')->send($message);
-            $this->get('mailer')->send($message2);
-
-//            return $this->render('@Corinne/admin/contact/new.html.twig', array(
-//                'nom' => $contact,
-//                'prenom' => $contact,
-//                'tel' => $contact,
-//                'mail' => $contact,
-//            ));
-        }
-        else {
-//            ENVOI DU MAIL
-            $from = $this->getParameter('mailer_user');
-            $name = $request->request->get('nom');
-            $firstname = $request->request->get('prenom');
-            $mail = $request->request->get('email');
-            $tel = $request->request->get('tel');
-            $msg = $request->request->get('text');
-            $message = \Swift_Message::newInstance()
-                ->setSubject('Contact Coriine Création')
-                ->setFrom(array($from => 'allard.corinne@laposte.net'))
-                ->setTo($from)
+            // ----------------------------
+            // envoi email à corinne
+            $name = $contact->getNom() . ' ' . $contact->getPrenom();
+            $message_corinne = \Swift_Message::newInstance()
+                ->setSubject('Corinne Création a recu un nouveau message')
+                ->setFrom('allard.corinne@laposte.net')
+                ->setTo('allard.corinne@laposte.net')
                 ->setBody(
                     $this->renderView(
-                        '@Corinne/User/mailclient.html.twig',
-                        array(
-                            'nom' => $name,
-                            'prenom' => $firstname,
-                            'mail' => $mail,
-                            'tel' => $tel,
-                            'text' => $msg
-                        )
-                    ),
-                    'text/html'
-                );
-            $message2 = \Swift_Message::newInstance()
-                ->setSubject('Copie Contact Corinne Création')
-                ->setFrom(array($from => 'allard.corinne@laposte.net'))
-                ->setTo($mail)
-                ->setBody(
-                    $this->renderView(
-                        '@Corinne/User/mailcorinnecreation.html.twig',
-                        array(
-                            'nom' => $name,
-                            'prenom' => $firstname,
-                            'mail' => $mail,
-                            'tel' => $tel,
-                            'text' => $msg
-                        )
-                    ),
-                    'text/html'
-                );
-            $this->get('mailer')->send($message);
-            $this->get('mailer')->send($message2);
+                    // app/Resources/views/Emails/registration.html.twig
+                        'CorinneBundle:Emails:corinne.html.twig', array('name' => $name, 'contact' => $contact)
+                    ), 'text/html'
+                )
+                /*
+                 * If you also want to include a plaintext version of the message
+                  ->addPart(
+                  $this->renderView(
+                  'Emails/registration.txt.twig',
+                  array('name' => $name)
+                  ),
+                  'text/plain'
+                  )
+                 */
+            ;
+            $this->get('mailer')->send($message_corinne);
 
+            return $this->redirectToRoute('corinne_homepage');
         }
-        return $this->redirectToRoute('corinne_homepage');
+
+
+        return $this->render('@Corinne/User/contact.html.twig', array(
+            'contact' => $contact,
+            'form' => $form->createView(),
+        ));
     }
 
     /**
@@ -185,6 +133,35 @@ class ContactController extends Controller
             ->setAction($this->generateUrl('contact_delete', array('id' => $contact->getId())))
             ->setMethod('DELETE')
             ->getForm()
+            ;
+    }
+
+    public function sendAction() {
+        $name = "Madame Monsieur";
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Contact Corinne Créations')
+            ->setFrom('allard.corinne@laposte.net')
+            ->setTo('allard.corinne@laposte.net')
+            ->setBody(
+                $this->renderView(
+                // CorinneBundle/Resources/views/Emails/registration.html.twig
+                    'CorinneBundle:Emails:client.html.twig', array('name' => $name)
+                ), 'text/html'
+            )
+            /*
+             * If you also want to include a plaintext version of the message
+              ->addPart(
+              $this->renderView(
+              'Emails/registration.txt.twig',
+              array('name' => $name)
+              ),
+              'text/plain'
+              )
+             */
         ;
+        $this->get('mailer')->send($message);
+
+        return $this->render('CorinneBundle:User:contact.html.twig');
     }
 }
