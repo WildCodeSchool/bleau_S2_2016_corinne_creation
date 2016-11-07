@@ -17,10 +17,10 @@ class ContactType extends AbstractType
         $builder
             ->add('nom')
             ->add('prenom')
-            ->add('mail')
             ->add('tel')
-            ->add('email')
-            ->add('textarea')
+            ->add('mail', 'email')
+            ->add('isSave', 'checkbox')
+            ->add('texte', 'textarea')
         ;
     }
     
