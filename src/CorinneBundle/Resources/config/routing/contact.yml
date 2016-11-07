@@ -11,3 +11,4 @@ contact_delete:
 contact_send:
     path:     /send
     defaults: { _controller: "CorinneBundle:Contact:send" }
+    methods:  [GET, POST]

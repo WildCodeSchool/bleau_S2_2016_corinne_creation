@@ -3,6 +3,11 @@ souscategorie_index:
     defaults: { _controller: "CorinneBundle:SousCategorie:index" }
     methods:  GET
 
+souscategorie_new:
+    path:     /new
+    defaults: { _controller: "CorinneBundle:SousCategorie:new" }
+    methods:  [GET, POST]
+
 souscategorie_edit:
     path:     /{id}/edit
     defaults: { _controller: "CorinneBundle:SousCategorie:edit" }
