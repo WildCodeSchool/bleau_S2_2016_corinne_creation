@@ -50,13 +50,7 @@ class PresseController extends Controller
 
             return $this->redirectToRoute('presse_index', array('id' => $presse->getId()));
         }
-        else {
-            $this->addFlash(
-                'error',
-                'Une erreur est survenue lors de l\'ajout de la presse'
 
-            );
-        }
         return $this->render('@Corinne/admin/presse/new.html.twig', array(
             'presse' => $presse,
             'form' => $form->createView(),
@@ -87,11 +81,6 @@ class PresseController extends Controller
 
             return $this->redirectToRoute('presse_index', array('id' => $presse->getId()));
         }
-        else{
-            $this->addFlash(
-                'error',
-                'Une erreur est survenue lors de la mise à jour de la presse');
-        }
 
         return $this->render('@Corinne/admin/presse/edit.html.twig', array(
             'presse' => $presse,
@@ -114,26 +103,24 @@ class PresseController extends Controller
 //        $em->remove($presse);
 //        $em->flush();
 
-        if (isset($fileName)){
+        if (isset($presse) and file_exists($fileName)){
             $this->addFlash(
                 'error',
                 'Une erreur est survenue lors de la suppression de la presse'
             );
-            return $this->redirectToRoute('souscategorie_index');
+            return $this->redirectToRoute('presse_index');
         }
         else{
             $this->addFlash(
                 'success',
-                'presse supprimer avec succès'
+                'presse supprimée avec succès'
             );
 
-            $em->remove($sous_scateg);
+            $em->remove($presse);
             $em->flush();
 
             return $this->redirectToRoute('presse_index');
         }
-
-//        return $this->redirectToRoute('presse_index');
 
     }
 

@@ -51,13 +51,6 @@ class SousCategorieController extends Controller
 
             return $this->redirectToRoute('souscategorie_index', array('id' => $sousCategorie->getId()));
         }
-        else {
-            $this->addFlash(
-                'error',
-                'Une erreur est survenue lors de l\'ajout de la catégorie'
-
-            );
-        }
 
         return $this->render('@Corinne/admin/souscategorie/new.html.twig', array(
             'sousCategorie' => $sousCategorie,
@@ -87,11 +80,6 @@ class SousCategorieController extends Controller
 
             return $this->redirectToRoute('souscategorie_edit', array('id' => $sousCategorie->getId()));
         }
-        else{
-            $this->addFlash(
-                'error',
-                'Une erreur est survenue lors de la mise à jour de la sous catégorie');
-        }
 
         return $this->render('@Corinne/admin/souscategorie/edit.html.twig', array(
             'sousCategorie' => $sousCategorie,
@@ -111,19 +99,17 @@ class SousCategorieController extends Controller
 
 //       var_dump($objet);die();
 // condition si objet vide supprimer
-
-
         if (isset($objet)){
             $this->addFlash(
                 'error',
-                'Vous ne pouvez pas supprimer la sous categorie si des objets y sont associés'
+                'Vous ne pouvez pas supprimer la sous categorie si des oeuvres y sont associées'
             );
             return $this->redirectToRoute('souscategorie_index');
         }
         else{
             $this->addFlash(
                 'success',
-                'Sous catégorie supprimer avec succès'
+                'Sous catégorie supprimée avec succès'
             );
 
             $em->remove($sous_scateg);
@@ -131,8 +117,6 @@ class SousCategorieController extends Controller
 
             return $this->redirectToRoute('souscategorie_index');
         }
-
-
     }
 
     /**
