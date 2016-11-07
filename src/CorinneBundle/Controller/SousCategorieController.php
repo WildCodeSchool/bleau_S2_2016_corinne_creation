@@ -4,6 +4,7 @@ namespace CorinneBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 use CorinneBundle\Entity\SousCategorie;
 use CorinneBundle\Form\SousCategorieType;
@@ -44,6 +45,10 @@ class SousCategorieController extends Controller
             $em->persist($sousCategorie);
             $em->flush();
 
+            $this->addFlash (
+                'success',
+                'Sous catégorie ajoutée avec succès');
+
             return $this->redirectToRoute('souscategorie_index', array('id' => $sousCategorie->getId()));
         }
 
@@ -68,6 +73,11 @@ class SousCategorieController extends Controller
             $em->persist($sousCategorie);
             $em->flush();
 
+            $this->addFlash(
+                'success',
+                'Sous catégorie modifiée avec succès'
+            );
+
             return $this->redirectToRoute('souscategorie_edit', array('id' => $sousCategorie->getId()));
         }
 
@@ -84,21 +94,30 @@ class SousCategorieController extends Controller
      */
     public function deleteAction($id){
         $em = $this->getDoctrine()->getManager();
-        $scateg = $em->getRepository('CorinneBundle:SousCategorie')->findOneById($id);
+        $sous_scateg = $em->getRepository('CorinneBundle:SousCategorie')->findOneById($id);
+        $objet = $em->getRepository('CorinneBundle:Objet')->findOneBySousCateg($sous_scateg);
+
+//       var_dump($objet);die();
 // condition si objet vide supprimer
+        if (isset($objet)){
+            $this->addFlash(
+                'error',
+                'Vous ne pouvez pas supprimer la sous categorie si des oeuvres y sont associées'
+            );
 
-        var_dump($scateg->getObjet());
-
-        if ($scateg->getObjet() != null){
             return $this->redirectToRoute('souscategorie_index');
         }
         else{
-            $em->remove($scateg);
+            $this->addFlash(
+                'success',
+                'Sous catégorie supprimée avec succès'
+            );
+
+            $em->remove($sous_scateg);
             $em->flush();
+
+            return $this->redirectToRoute('souscategorie_index');
         }
-
-        return $this->redirectToRoute('souscategorie_index');
-
     }
 
     /**

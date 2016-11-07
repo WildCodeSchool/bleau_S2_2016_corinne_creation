@@ -64,6 +64,11 @@ class ObjetController extends Controller
             $em->persist($objet);
             $em->flush();
 
+            $this->addFlash(
+                'success',
+                'Une oeuvres a été ajoutée avec succès'
+            );
+
             return $this->redirectToRoute('objet_index', array('id' => $objet->getId()));
         }
 
@@ -110,9 +115,12 @@ class ObjetController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($objet);
-
-
             $em->flush();
+
+            $this->addFlash(
+                'success',
+                'L\'oeuvres a été modifiée avec succès'
+            );
 
             return $this->redirectToRoute('objet_index', array('id' => $objet->getId()));
         }
@@ -132,13 +140,30 @@ class ObjetController extends Controller
         $em = $this->getDoctrine()->getManager();
         $objet = $em->getRepository('CorinneBundle:Objet')->findOneById($id);
         $fileName = 'uploads/pictures/' . $objet->getSource();
-        if(file_exists($fileName)) {
-            unlink($fileName);
-        }
-        $em->remove($objet);
-        $em->flush();
+//        if(file_exists($fileName)) {
+//            unlink($fileName);
+//        }
+//        $em->remove($objet);
+//        $em->flush();
 
-        return $this->redirectToRoute('objet_index');
+        if (isset($objet) and file_exists($fileName)){
+            $this->addFlash(
+                'error',
+                'L\'oeuvre n\'a pas pu être supprimée'
+            );
+            return $this->redirectToRoute('objet_index');
+        }
+        else{
+            $this->addFlash(
+                'success',
+                'l\'oeuvre a été supprimée avec succès'
+            );
+
+            $em->remove($sous_scateg);
+            $em->flush();
+
+            return $this->redirectToRoute('objet_index');
+        }
 
     }
 
