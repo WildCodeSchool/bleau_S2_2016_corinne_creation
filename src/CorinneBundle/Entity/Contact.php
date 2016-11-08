@@ -21,7 +21,7 @@ class Contact
      * @var int
      */
     private $isSave;
-    public function setIsSave(int $isSave) {
+    public function setIsSave($isSave) {
             $this->isSave = $isSave;
     }
 
@@ -41,7 +41,7 @@ class Contact
     /**
      * @param string $texte
      */
-    public function setTexte(string $texte)
+    public function setTexte($texte)
     {
         $this->texte = $texte;
     }
