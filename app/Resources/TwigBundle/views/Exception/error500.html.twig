@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container center">
+        <h1>Oops</h1>
+        <p>
+        <h2>{{ status_code }} - {{ status_text }} </h2>
+        </p>
+        <p>
+            <a href="{{ path('corinne_homepage') }}"  class="waves-effect waves-light btn-large blue">home</a>
+            <a href="{{ path('corinne_homepage') }}"  class="waves-effect waves-light btn-large green">Contact</a>
+        </p>
+    </div>
+
+{% endblock %}
