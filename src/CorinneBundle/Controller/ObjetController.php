@@ -40,6 +40,7 @@ class ObjetController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             // $file stores the uploaded PDF file
 //            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $objet->getSource();
@@ -62,6 +63,11 @@ class ObjetController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($objet);
             $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Une oeuvres a été ajoutée avec succès'
+            );
 
             return $this->redirectToRoute('objet_index', array('id' => $objet->getId()));
         }
@@ -109,9 +115,12 @@ class ObjetController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($objet);
-
-
             $em->flush();
+
+            $this->addFlash(
+                'success',
+                'L\'oeuvres a été modifiée avec succès'
+            );
 
             return $this->redirectToRoute('objet_index', array('id' => $objet->getId()));
         }
@@ -137,7 +146,13 @@ class ObjetController extends Controller
         $em->remove($objet);
         $em->flush();
 
+        $this->addFlash(
+                'success',
+                'l\'oeuvre a été supprimée avec succès'
+            );
+
         return $this->redirectToRoute('objet_index');
+
 
     }
 

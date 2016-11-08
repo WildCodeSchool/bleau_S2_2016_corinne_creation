@@ -109,6 +109,11 @@ class EcolabelController extends Controller
             $em->persist($ecolabel);
             $em->flush();
 
+            $this->addFlash(
+                'success',
+                'l\'éco-label a été modifié avec succès'
+            );
+
             return $this->redirectToRoute('ecolabel_index', array('id' => $ecolabel->getId()));
         }
 

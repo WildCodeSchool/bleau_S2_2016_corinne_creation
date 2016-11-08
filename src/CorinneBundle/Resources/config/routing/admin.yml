@@ -1,4 +1,4 @@
-menu_categorie:
+admin_index:
     path:     /admin
     defaults: { _controller: "CorinneBundle:Admin:index" }
-    methods:  GET
+    methods:  [GET, HEAD]

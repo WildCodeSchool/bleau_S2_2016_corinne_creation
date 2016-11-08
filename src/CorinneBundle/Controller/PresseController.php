@@ -44,6 +44,10 @@ class PresseController extends Controller
             $em->persist($presse);
             $em->flush();
 
+            $this->addFlash (
+                'success',
+                'Presse ajoutée avec succès');
+
             return $this->redirectToRoute('presse_index', array('id' => $presse->getId()));
         }
 
@@ -53,6 +57,7 @@ class PresseController extends Controller
         ));
 
     }
+
 
     /**
      * Displays a form to edit an existing Presse entity.
@@ -68,6 +73,11 @@ class PresseController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($presse);
             $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Presse modifiée avec succès'
+            );
 
             return $this->redirectToRoute('presse_index', array('id' => $presse->getId()));
         }
@@ -87,13 +97,30 @@ class PresseController extends Controller
         $em = $this->getDoctrine()->getManager();
         $presse = $em->getRepository('CorinneBundle:Presse')->findOneById($id);
         $fileName = 'uploads/pictures/' . $presse->getSource();
-        if(file_exists($fileName)) {
-            unlink($fileName);
-        }
-        $em->remove($presse);
-        $em->flush();
+//        if(file_exists($fileName)) {
+//            unlink($fileName);
+//        }
+//        $em->remove($presse);
+//        $em->flush();
 
-        return $this->redirectToRoute('presse_index');
+        if (isset($presse) and file_exists($fileName)){
+            $this->addFlash(
+                'error',
+                'Une erreur est survenue lors de la suppression de la presse'
+            );
+            return $this->redirectToRoute('presse_index');
+        }
+        else{
+            $this->addFlash(
+                'success',
+                'presse supprimée avec succès'
+            );
+
+            $em->remove($presse);
+            $em->flush();
+
+            return $this->redirectToRoute('presse_index');
+        }
 
     }
 

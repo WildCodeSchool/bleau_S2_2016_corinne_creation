@@ -46,6 +46,11 @@ class EventController extends Controller
             $em->persist($event);
             $em->flush();
 
+            $this->addFlash(
+                'success',
+                'l\'évènement a été ajouté avec succès'
+            );
+
             return $this->redirectToRoute('event_index', array('id' => $event->getId()));
         }
         ;
@@ -73,6 +78,11 @@ class EventController extends Controller
             $em->persist($event);
             $em->flush();
 
+            $this->addFlash(
+                'success',
+                'l\'évènement a été modifié avec succès'
+            );
+
             return $this->redirectToRoute('event_index', array('id' => $event->getId()));
         }
 
@@ -96,6 +106,11 @@ class EventController extends Controller
         }
         $em->remove($event);
         $em->flush();
+
+        $this->addFlash(
+            'success',
+            'l\'évènment a été supprimé avec succès'
+        );
 
         return $this->redirectToRoute('event_index');
 

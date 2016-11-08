@@ -20,6 +20,9 @@ jQuery(document).ready(function($) {
 
     // deroulement_card();
 
+    //FONTION CASE A COCHER
+    selecteur();
+
 });
 
 // ********************************************************************
@@ -31,6 +34,7 @@ function init_corinne()
     // pour le menu hamburger
     $(".button-collapse").sideNav();
     $('#contact-body').hide();
+
 
     $("#contact-body").hide().show(1000).css("display", "block");
     $("#access-body").hide().show(2000).css("display" ,"block");
@@ -153,5 +157,17 @@ function animonscroll() {
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
+
+}
+
+// ********************************************************************
+// *                       Click droit off
+// ********************************************************************
+
+
+function selecteur() {
+
+    // console.log('ma fonction')
+    $('select').material_select(console.log('HELLO WORLD OD MY DICK !!!'));
 
 }

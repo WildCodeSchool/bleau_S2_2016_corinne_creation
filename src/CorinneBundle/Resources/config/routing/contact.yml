@@ -3,13 +3,12 @@ contact_index:
     defaults: { _controller: "CorinneBundle:Contact:index" }
     methods:  GET
 
-contact_new:
-    path:     /new
-    defaults: { _controller: "CorinneBundle:Contact:new" }
-    methods:  [GET, POST]
-
 contact_delete:
     path:     /{id}/delete
     defaults: { _controller: "CorinneBundle:Contact:delete" }
     methods:  [GET, POST]
 
+contact_send:
+    path:     /send
+    defaults: { _controller: "CorinneBundle:Contact:send" }
+    methods:  [GET, POST]
