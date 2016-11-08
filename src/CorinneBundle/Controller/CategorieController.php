@@ -25,22 +25,6 @@ class CategorieController extends Controller
 
         $categories = $em->getRepository('CorinneBundle:Categorie')->findAll();
 
-//        foreach ($categories as $element) {
-
-//            $element['picture_min'] = '42';
-//            var_dump($element);
-
-
-//            header('Content-type: image/jpeg');
-
-//            $image = new \Imagick('uploads/pictures/' . $element->getSource());
-//            $image = new \Imagick('uploads/pictures/c1d13bee49265dad8508c9466f7c6f46.jpeg' );
-// Si 0 est fourni comme paramètre de hauteur ou de largeur,
-// les proportions seront conservées
-//            $image->thumbnailImage(100, 0);
-
-//            echo $image;
-//        }
 
         return $this->render('@Corinne/admin/categorie/index.html.twig', array(
             'categories' => $categories,
@@ -64,7 +48,6 @@ class CategorieController extends Controller
                 unlink($fileName);
             }
 
-
             // $file stores the uploaded PDF file
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $categorie->getSource();
@@ -86,6 +69,11 @@ class CategorieController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($categorie);
             $em->flush();
+
+            $this->addFlash(
+                'success',
+                'la catégorie a été ajoutée avec succès'
+            );
 
             return $this->redirectToRoute('categorie_index');
         }
@@ -135,6 +123,11 @@ class CategorieController extends Controller
             $em->persist($categorie);
             $em->flush();
 
+            $this->addFlash(
+                'success',
+                'la catégorie a été modifiée avec succès'
+            );
+
             return $this->redirectToRoute('categorie_index');
         }
 
@@ -148,11 +141,17 @@ class CategorieController extends Controller
         $em = $this->getDoctrine()->getManager();
         $categ = $em->getRepository('CorinneBundle:Categorie')->findOneById($id);
         $fileName = 'uploads/pictures/' . $categ->getSource();
+
         if(file_exists($fileName)) {
             unlink($fileName);
         }
         $em->remove($categ);
         $em->flush();
+
+        $this->addFlash(
+            'success',
+            'la catégorie a été supprimée avec succès'
+        );
 
         return $this->redirectToRoute('categorie_index');
 

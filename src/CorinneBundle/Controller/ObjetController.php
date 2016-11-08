@@ -140,30 +140,19 @@ class ObjetController extends Controller
         $em = $this->getDoctrine()->getManager();
         $objet = $em->getRepository('CorinneBundle:Objet')->findOneById($id);
         $fileName = 'uploads/pictures/' . $objet->getSource();
-//        if(file_exists($fileName)) {
-//            unlink($fileName);
-//        }
-//        $em->remove($objet);
-//        $em->flush();
-
-        if (isset($objet) and file_exists($fileName)){
-            $this->addFlash(
-                'error',
-                'L\'oeuvre n\'a pas pu être supprimée'
-            );
-            return $this->redirectToRoute('objet_index');
+        if(file_exists($fileName)) {
+            unlink($fileName);
         }
-        else{
-            $this->addFlash(
+        $em->remove($objet);
+        $em->flush();
+
+        $this->addFlash(
                 'success',
                 'l\'oeuvre a été supprimée avec succès'
             );
 
-            $em->remove($sous_scateg);
-            $em->flush();
+        return $this->redirectToRoute('objet_index');
 
-            return $this->redirectToRoute('objet_index');
-        }
 
     }
 
