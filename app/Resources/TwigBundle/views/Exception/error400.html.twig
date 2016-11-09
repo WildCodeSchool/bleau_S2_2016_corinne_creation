@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
 
-
 {% block body%}
 
-    <div class="container amber-text">
+    <div class="container amber-text center msg-error ">
         <div class="row">
             <div class="col s12">
                 <h1>OOOOPSS ! Une érreur a été détectée</h1>
@@ -12,7 +11,8 @@
 
         <div class="row">
             <div class="col s12">
-                <h2>Le serveur a trouvée l'érreur suivante : <br> "{{ status_code }} {{ status_text }}".</h2>
+                <p>Le serveur a trouvée l'érreur suivante : <br> <span class="center">"{{ status_code }} {{ status_text }}".</span></p>
+                <p>Erreur 400 : Mauvaise demande</p>
             </div>
         </div>
 
@@ -22,9 +22,11 @@
                     Quelque chose est cassé. Veuillez nous faire savoir ce que vous faisiez lorsque cette erreur s'est produite.
                     Nous allons le réparer dès que possible. Désolé pour tout inconvénient causé.
                 </p>
+                <p>
+                    <a href="{{ path('corinne_homepage') }}"  class="waves-effect waves-light btn-large amber">retour</a>
+                </p>
             </div>
         </div>
-
     </div>
 
 {% endblock body %}
