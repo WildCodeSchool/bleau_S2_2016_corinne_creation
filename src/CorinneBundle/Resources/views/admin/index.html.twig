@@ -23,14 +23,14 @@
     <ul id="categorie-dropdown" class="dropdown-content teal white-text">
         <li><a href="{{ path('categorie_index') }}" class="white-text">Catégorie</a></li>
         <li class="divider"></li>
-        <li><a href="{{ path('categorie_new') }}" class="white-text">Ajouter catégorie</a></li>
+        <li><a href="{{ path('categorie_new') }}" class="white-text">Ajouter une catégorie</a></li>
     </ul>
 
     <!-- Dropdown Structure -->
     <ul id="souscat-dropdown" class="dropdown-content teal white-text">
         <li><a  href="{{ path('souscategorie_index') }}"  class="white-text">sous catégorie</a></li>
         <li class="divider"></li>
-        <li><a href="{{ path('souscategorie_new') }}" class="white-text">Ajouter sous catégorie</a></li>
+        <li><a href="{{ path('souscategorie_new') }}" class="white-text">Ajouter une sous catégorie</a></li>
     </ul>
 
     <!-- Dropdown Structure -->
@@ -42,14 +42,14 @@
 
     <!-- Dropdown Structure -->
     <ul id="presse-dropdown" class="dropdown-content teal white-text">
-        <li><a  href="{{ path('presse_index') }}"  class="white-text">Presse</a></li>
+        <li><a  href="{{ path('presse_index') }}"  class="white-text">Article</a></li>
         <li class="divider"></li>
-        <li><a href="{{ path('presse_new') }}" class="white-text">Ajouter une presse</a></li>
+        <li><a href="{{ path('presse_new') }}" class="white-text">Ajouter un article</a></li>
     </ul>
 
     <!-- Dropdown Structure -->
     <ul id="objet-dropdown" class="dropdown-content teal white-text">
-        <li><a  href="{{ path('objet_index') }}"  class="white-text">Oeuvres</a></li>
+        <li><a  href="{{ path('objet_index') }}"  class="white-text">Oeuvre</a></li>
         <li class="divider"></li>
         <li><a href="{{ path('objet_new') }}" class="white-text">Ajouter une oeuvre</a></li>
     </ul>
@@ -59,24 +59,24 @@
             <a href="#!" class="brand-logo right">Administration </a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="left hide-on-med-and-down">
-                <li><a class="dropdown-button" data-activates="categorie-dropdown" href="#!">Catégories <i class="material-icons right">arrow_drop_down</i></a></li>
-                <li><a class="dropdown-button" data-activates="souscat-dropdown" href="#!">Sous catégories <i class="material-icons right">arrow_drop_down</i></a></li>
-                <li><a class="dropdown-button" data-activates="objet-dropdown" > Oeuvres <i class="material-icons right">arrow_drop_down</i></a></li>
-                <li><a class="dropdown-button" data-activates="event-dropdown" href="#!">Evenements<i class="material-icons right">arrow_drop_down</i></a></li>
-                <li><a class="dropdown-button" data-activates="presse-dropdown" href="#!">Presses<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-button" data-activates="categorie-dropdown" href="#!">Catégorie<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-button" data-activates="souscat-dropdown" href="#!">Sous catégorie<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-button" data-activates="objet-dropdown" > Oeuvre<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-button" data-activates="event-dropdown" href="#!">Evenement<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-button" data-activates="presse-dropdown" href="#!">Article<i class="material-icons right">arrow_drop_down</i></a></li>
                 <li><a href="{{ path('ecolabel_index') }}">Ecolabel</a></li>
-                <li><a href="{{ path('contact_index') }}">Contacts</a></li>
+                <li><a href="{{ path('contact_index') }}">Contact</a></li>
                 <li><a href="{{ path('fos_user_security_logout') }}" class="amber-text">Corinne Création</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
-                <li><a href="{{ path('categorie_index') }}">Catégories</a></li>
-                <li><a href="{{ path('souscategorie_index') }}">Sous catégories</a></li>
-                <li><a href="{{ path('objet_index') }}">Oeuvres</a></li>
-                <li><a href="{{ path('event_index') }}">Evenements</a></li>
-                <li><a href="{{ path('presse_index') }}">Presses</a></li>
-                <li><a href="{{ path('contact_index') }}">Contacts</a></li>
+                <li><a href="{{ path('categorie_index') }}">Catégorie</a></li>
+                <li><a href="{{ path('souscategorie_index') }}">Sous catégorie</a></li>
+                <li><a href="{{ path('objet_index') }}">Oeuvre</a></li>
+                <li><a href="{{ path('event_index') }}">Evenement</a></li>
+                <li><a href="{{ path('presse_index') }}">Article</a></li>
+                <li><a href="{{ path('contact_index') }}">Contact</a></li>
                 <li><a href="{{ path('ecolabel_index') }}">Ecolabel</a></li>
-                <li><a href="{{ path('fos_user_security_logout') }}">Corinne Création</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Corinne Créations</a></li>
             </ul>
         </div>
     </nav>
