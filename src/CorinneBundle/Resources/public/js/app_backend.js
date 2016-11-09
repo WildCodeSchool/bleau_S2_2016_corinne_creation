@@ -8,6 +8,7 @@ jQuery(document).ready(function($) {
     console.log('jQuery app_backend a démarré...');
 
     selecteur();
+
 });
 
 
@@ -22,7 +23,7 @@ jQuery(document).ready(function($) {
 function selecteur() {
 
     // console.log('ma fonction')
-    $('select').material_select(console.log(''));
+    $('select').material_select();
 
 
 }

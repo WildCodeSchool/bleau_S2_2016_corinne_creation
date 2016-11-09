@@ -21,6 +21,7 @@ jQuery(document).ready(function($) {
     // deroulement_card();
 
     //FONTION CASE A COCHER
+    // initialisation des listbox (select)
     selecteur();
 
 });
@@ -45,6 +46,8 @@ function init_corinne()
 
 
     $(".dropdown-button").dropdown();
+
+
 
 }
 
@@ -168,6 +171,6 @@ function animonscroll() {
 function selecteur() {
 
     // console.log('ma fonction')
-    $('select').material_select(console.log('HELLO WORLD OD MY DICK !!!'));
+    $('select').material_select();
 
 }
