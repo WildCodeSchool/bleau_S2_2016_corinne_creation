@@ -36,13 +36,13 @@
 
         <div class="row">
             <div class="input-field col s12">
-                {{ form_label(edit_form.categ, "Catégorie") }}
+                {{ form_label(edit_form.categ, "Catégorie") }} <br><br>
                 {{ form_widget(edit_form.categ) }}
                 {{ form_errors(edit_form.categ) }}
             </div>
         </div>
         <div class="input-field">
-            <label>Sous catégorie</label>
+            <label>Sous catégorie</label> <br><br>
             {{ form_widget(edit_form.sousCateg) }}
             {{ form_errors(edit_form.sousCateg) }}
         </div>

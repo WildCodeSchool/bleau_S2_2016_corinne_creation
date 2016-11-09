@@ -36,15 +36,30 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                        {{ form_label(form.categ, "Catégorie") }}
+                        {{ form_label(form.categ, "Catégorie") }} <br><br>
+
+                        {#<input type="text" class=""#}
+                               {#id="{{ form.categ.vars.id }}"#}
+                               {#name="{{ form.categ.vars.full_name }}"#}
+                               {#value="{{ form.categ.vars.value }}">#}
+
+
                         {{ form_widget(form.categ) }}
                         {{ form_errors(form.categ) }}
+                        {% do form.categ.setRendered %}
                     </div>
                 </div>
                 <div class="input-field">
-                    <label>Sous catégorie</label>
+                    {#{{ form_label(form.sousCateg, "Sous catégorie") }}#}
+                    <label for="{{ form.sousCateg.vars.full_name }}">Sous categorie</label><br><br>
+                    {#<input type="select" class=""#}
+                           {#id="{{ form.sousCateg.vars.id }}"#}
+                           {#name="{{ form.sousCateg.vars.full_name }}"#}
+                           {#value="{{ form.sousCateg.vars.value }}">#}
+
                     {{ form_widget(form.sousCateg) }}
                     {{ form_errors(form.sousCateg) }}
+                    {% do form.sousCateg.setRendered %}
                 </div>
 
                 <div class="row center">
