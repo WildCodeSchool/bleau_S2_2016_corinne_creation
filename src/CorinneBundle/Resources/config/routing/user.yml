@@ -45,3 +45,7 @@ corinne_mailclient:
 corinne_mailcorinnecreation:
     path:     /mailcorinnecreation
     defaults: { _controller: CorinneBundle:Default:mailCorinneCreation }
+
+corinne_mention:
+    path:     /mention
+    defaults: { _controller: CorinneBundle:Default:mention }

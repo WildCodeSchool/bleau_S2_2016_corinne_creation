@@ -94,4 +94,10 @@ class DefaultController extends Controller
     {
         return $this->render('@Corinne:User:mailcorinnecreation.html.twig');
     }
+
+    public function mentionAction()
+    {
+
+        return $this->render('@Corinne/User/mention.html.twig');
+    }
 }
