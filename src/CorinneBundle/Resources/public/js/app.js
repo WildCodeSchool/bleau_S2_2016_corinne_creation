@@ -120,31 +120,34 @@ function gere_facebook() {
 // *                       Click droit off
 // ********************************************************************
 function click_droit_off() {
-    //if IE4+
-   document.onselectstart = new Function("return false");
-   document.oncontextmenu = new Function("return false");
-   //if NS6
-   if (window.sidebar) {
-       document.onmousedown = disableselect;
-       document.onclick = reEnable;
-   }
+
 
     $('img').mousedown(function (event) {
         switch (event.which) {
             case 1:
-//                alert('Left Mouse button pressed.');
+               // alert('Left Mouse button pressed.');
                 break;
             case 2:
                 // alert('Middle Mouse button pressed.');
                 break;
             case 3:
-
                 $('#modalAlert').openModal();
+                // alert('alerte activé');
+                // $('#modalAlertBouton').get(0).click();
                 break;
             default:
                 alert('You have a strange Mouse!');
         }
     });
+    //if IE4+
+    // document.onselectstart = new Function("return false");
+    document.oncontextmenu = new Function("return false");
+    //if NS6
+    if (window.sidebar) {
+        document.onmousedown = disableselect;
+        document.onclick = reEnable;
+    }
+
 }
 
 function animonscroll() {

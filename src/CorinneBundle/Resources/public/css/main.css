@@ -630,6 +630,12 @@ figure.effect-sarah:hover p {
     color:#ffd700;
 }
 
+.like-fb {
+    position: fixed;
+    left: 45px;
+    top: 450px;
+
+}
 /****************************************************************************
 *                                                                           *
 *                               10. RETOUR HAUT DE PAGE                     *

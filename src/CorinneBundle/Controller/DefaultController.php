@@ -16,7 +16,6 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-//        $objets = $em->getRepository('CorinneBundle:Objet')->findAll();
         $objets = $em->getRepository('CorinneBundle:Objet')->findBy( array('slider' => 1) );
 
 
