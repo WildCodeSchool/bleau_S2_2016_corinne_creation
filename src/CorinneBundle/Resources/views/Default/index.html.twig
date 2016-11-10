@@ -11,28 +11,27 @@
         </div>
     </section>
 
+    {#carousel principal#}
+    <section>
+    {#carousel pour tablette et gran écran    #}
     <div class="row ">
         <div class="carousel hide-on-small-only" id="carousel-index">
-
-
             {% for objet in objets %}
-
             <a class="carousel-item" href="#one!"><img  class="responsive-img" src="{{ asset('uploads/pictures/')}}{{ objet.source }}" alt="anneau de feu"/></a>
-
             {% endfor %}
         </div>
     </div>
+
+    {#carousel pour mobile#}
     <div class="row">
         <div class="carousel carousel-slider  hide-on-med-and-up" >
-
             {% for objet in objets %}
-
                 <a class="carousel-item" href="#one!"><img  class="responsive-img" src="{{ asset('uploads/pictures/')}}{{ objet.source }}" alt="anneau de feu"/></a>
-
             {% endfor %}
 
         </div>
     </div>
+    </section>
 
     <!--Enluminure droit-->
     <section>
@@ -43,6 +42,7 @@
             <div class="col s2 m6 l1 "></div>
         </div>
     </section>
+
     <br><br>
     <main role="main">
 
@@ -104,7 +104,7 @@
             </div>
         </section>
 
-
+        {# mon atelier #}
         <section>
             <div class="container">
                 <div class="row">

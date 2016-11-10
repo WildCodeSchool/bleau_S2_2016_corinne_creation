@@ -35,7 +35,7 @@
                                 <div class="row">
                                     <li class="col s12 m12 offset-m1">
                                         {#<a href="{{ path('contact_new') }}"><span id="idContact" class="navTextCC">Contact</span></a>#}
-                                        <a class="modal-trigger" href="#modal1"><span id="idContact" class="navTextCC">Contact</span></a>
+                                        <a class="modal-trigger" data-target="#modal1"  href="#modal1"><span id="idContact" class="navTextCC">Contact</span></a>
                                     </li>
                                 </div>
                             </ul>
@@ -76,13 +76,13 @@
         </div>
     </div>
 
+    {# message de sécurité du clic droit #}
     <div id="modalAlert" class="modal modal-fixed-footer">
         <div class="modal-content white">
             <h4>Votre attention s'il vous plait</h4>
             <p class="center valign">
                 <br>
-                Ses oeuvres sont le fruit de mon travail,<br>
-                Cela représente un investissement personnel important.
+                Merci de ne pas copier,<br>
             </p>
         </div>
         <div class="modal-footer">
