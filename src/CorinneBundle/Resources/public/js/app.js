@@ -43,6 +43,8 @@ function init_corinne()
     $('#textarea1').trigger('autoresize');
 
     $('.modal-trigger').leanModal();
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    // $('.modal').leanModal();
 
 
     $(".dropdown-button").dropdown();
@@ -164,7 +166,7 @@ function animonscroll() {
 }
 
 // ********************************************************************
-// *                       Click droit off
+// *
 // ********************************************************************
 
 
