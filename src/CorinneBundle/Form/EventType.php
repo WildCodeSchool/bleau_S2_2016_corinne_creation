@@ -16,7 +16,7 @@ class EventType extends AbstractType
     {
         $builder
             ->add('titre')
-            ->add('descriptif')
+            ->add('descriptif', 'textarea')
 
             ->add('dateDebut', 'date',
                 array(
