@@ -81,6 +81,7 @@
                                            name="{{ form.isSave.vars.full_name }}"
                                            type="checkbox" class="col  s2"/>
 
+                                    {# NE PAS SUPPRIMER POUR LE JOUR OU LA BALISE SERA NECESSAIRE !!! #}
                                     {#<label for=name="{{ form.isSave.vars.full_name }}" class="amber-text">J'accepte l'enregistrement de mes données</label>#}
 
                                     {{ form_label(form.isSave, "J'accepte l'enregistrement de mes données", { 'attr': {'class': 'amber-text'} } ) }}
@@ -89,8 +90,12 @@
                                     {% do form.isSave.setRendered %}
                                 </div>
 
-
-
+                                {# MENTION LEGALE SUR LES DONNEES #}
+                                <div class="row">
+                                    <div class="col s12">
+                                        <p class="libele amber-text">"Conformément à la loi informatique et liberté du 6 janvier 1978 modifiée, aucune donnée ne sera collectée à des fins commerciales ou fournie à des tiers"</p>
+                                    </div>
+                                </div>
                                 {#Boutons#}
 
                                 <div class="row">
