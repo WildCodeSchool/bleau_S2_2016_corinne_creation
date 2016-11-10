@@ -27,4 +27,5 @@ class AdminController extends Controller
         return $this->render('@Corinne/admin/index.html.twig');
     }
 
+
 }
