@@ -9,25 +9,28 @@
 
         {{ form_start(edit_form) }}
 
-        <div>
+
+        <div class="row">
             <label>Image</label>
             {{ form_widget(edit_form.source) }}
             {{ form_errors(edit_form.source) }}
         </div>
 
 
-        <div class="input-field">
-            {{ form_widget(edit_form.slider) }}
-            {{ form_label(edit_form.slider, "ajouter au slider ?") }}
-            {{ form_errors(edit_form.slider) }}
+        <div class="row">
+            <div class="input-field">
+                {{ form_widget(edit_form.slider) }}
+                {{ form_label(edit_form.slider, "ajouter au slider ?") }}
+                {{ form_errors(edit_form.slider) }}
+            </div>
         </div>
 
-        <div>
+        <div class="row">
             <label>Nom de l'image</label>
             {{ form_widget(edit_form.alt) }}
             {{ form_errors(edit_form.alt) }}
         </div>
-        <div>
+        <div class="row">
             <label>Définition</label>
             {{ form_widget(edit_form.definition) }}
             {{ form_errors(edit_form.definition) }}
@@ -41,10 +44,13 @@
                 {{ form_errors(edit_form.categ) }}
             </div>
         </div>
-        <div class="input-field">
-            <label>Sous catégorie</label> <br><br>
-            {{ form_widget(edit_form.sousCateg) }}
-            {{ form_errors(edit_form.sousCateg) }}
+
+        <div class="row">
+            <div class="input-field">
+                <label>Sous catégorie</label> <br><br>
+                {{ form_widget(edit_form.sousCateg) }}
+                {{ form_errors(edit_form.sousCateg) }}
+            </div>
         </div>
 
         <div class="row center">
