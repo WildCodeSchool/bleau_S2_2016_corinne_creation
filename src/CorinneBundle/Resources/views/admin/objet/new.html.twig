@@ -2,37 +2,54 @@
 
 {% block body %}
 
-    <div class="container">
-        <div class="card-panel  z-depth-5">
+        <div class="container">
             <div class="card teal center">
                 <h1 class="white-text">Ajouter une oeuvre :</h1>
             </div>
-        </div>
+
 
             {{ form_start(form) }}
 
+            <div class="row">
                 <div >
                     {{  form_label(form.source, "choisissez une image") }}
                     {{ form_widget(form.source) }}
                     {{ form_errors(form.source) }}
                 </div>
+            </div>
+
+            <div class="row">
                 <div class="input-field">
                     <label>Nom de l'image</label>
                     {{ form_widget(form.alt) }}
                     {{ form_errors(form.alt) }}
                 </div>
+            </div>
 
+            <div class="row">
+                <div class="col s12">
+
+                    </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col s12 m12 l4">
                 <div class="input-field">
                     {{ form_widget(form.slider) }}
                     {{ form_label(form.slider, "ajouter au slider ?") }}
                     {{ form_errors(form.slider) }}
                 </div>
+                </div>
+            </div>
 
+            <div class="row">
                 <div class="input-field">
-                    <label>Alt</label>
+                    <label>Descritpion de l'oeuvre</label>
                     {{ form_widget(form.definition) }}
                     {{ form_errors(form.definition) }}
                 </div>
+            </div>
 
                 <div class="row">
                     <div class="input-field col s12">
@@ -49,6 +66,7 @@
                         {% do form.categ.setRendered %}
                     </div>
                 </div>
+            <div class="row">
                 <div class="input-field">
                     {#{{ form_label(form.sousCateg, "Sous catégorie") }}#}
                     <label for="{{ form.sousCateg.vars.full_name }}">Sous categorie</label><br><br>
@@ -61,6 +79,7 @@
                     {{ form_errors(form.sousCateg) }}
                     {% do form.sousCateg.setRendered %}
                 </div>
+            </div>
 
                 <div class="row center">
                     <input class="waves-effect waves-light btn" type="submit" value="Valider" />
@@ -71,7 +90,7 @@
 
             {{ form_end(form) }}
 
-    </div>
+         </div>
 
 {% endblock %}
 

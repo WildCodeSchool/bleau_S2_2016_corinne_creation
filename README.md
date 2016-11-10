@@ -24,7 +24,20 @@ A Symfony project created on October 17, 2016, 4:43 pm.
 4 - finition css admin et correction affichage
     - !!!!!à fixer foreignkey edit & delete de le sous categorie!!!!! 
 
-
+5 - A l'installation du projet il faut proceder à la création des 
+    repertoires suivants :
+    - web/uploads/img-creation
+    - web/uploads/img-ecolabel
+    - web/uploads/img-event
+    - web/uploads/img-presse
+    - web/uploads/img-slider
+    - web/uploads/pictures
+    
+    Il faut aussi modifier les droits sur ces répetroires
+    
+ 
+    
+    
 
 
 12 - Dossier a créer dans le web 
