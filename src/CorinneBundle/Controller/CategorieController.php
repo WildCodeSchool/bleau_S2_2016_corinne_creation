@@ -164,7 +164,7 @@ class CategorieController extends Controller
         else{
             $this->addFlash(
                 'error',
-                'Vous ne pouvez pas supprimer la categorie si des oeuvres  et une sou catégorie y sont associées'
+                'Vous ne pouvez pas supprimer la categorie si des oeuvres  et/ou une sous catégorie y sont associées'
             );
 
             return $this->redirectToRoute('categorie_index');
