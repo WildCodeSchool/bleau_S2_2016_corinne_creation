@@ -30,12 +30,12 @@ A Symfony project created on October 17, 2016, 4:43 pm.
    
 ## 5 - PROCEDER A LA CREATION DES REPERTOIRES SUIVANT 
     A céer dans le dossier web
-   - web/uploads/img-creation
-   - web/uploads/img-ecolabel
-   - web/uploads/img-event
-   - web/uploads/img-presse
-   - web/uploads/img-slider
-   - web/uploads/pictures
+   - uploads/img-creation
+   - uploads/img-ecolabel
+   - uploads/img-event
+   - uploads/img-presse
+   - uploads/img-slider
+   - uploads/pictures
    
     Il faut aussi modifier les droits sur ces répetroires
     
