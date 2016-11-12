@@ -141,20 +141,34 @@ class CategorieController extends Controller
         $em = $this->getDoctrine()->getManager();
         $categ = $em->getRepository('CorinneBundle:Categorie')->findOneById($id);
         $fileName = 'uploads/pictures/' . $categ->getSource();
+        $objet = $em->getRepository('CorinneBundle:Objet')->findOneBySousCateg($categ);
+        $souscategorie = $em->getRepository('CorinneBundle:SousCategorie')->findByCategorie($categ);
 
-        if(file_exists($fileName)) {
-            unlink($fileName);
+//       var_dump($objet);die();
+// condition si objet vide supprimer
+        if (isset($objet, $souscategorie)){
+
+            if(file_exists($fileName)) {
+                unlink($fileName);
+            }
+            $em->remove($categ);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                'la catégorie a été supprimée avec succès'
+            );
+
+            return $this->redirectToRoute('categorie_index');
         }
-        $em->remove($categ);
-        $em->flush();
+        else{
+            $this->addFlash(
+                'error',
+                'Vous ne pouvez pas supprimer la categorie si des oeuvres  et/ou une sous catégorie y sont associées'
+            );
 
-        $this->addFlash(
-            'success',
-            'la catégorie a été supprimée avec succès'
-        );
-
-        return $this->redirectToRoute('categorie_index');
-
+            return $this->redirectToRoute('categorie_index');
+        }
     }
 
     public function listeAction($id) {
