@@ -4,6 +4,7 @@ namespace CorinneBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
@@ -16,7 +17,33 @@ class Objet
     {
         return strval($this->id);
     }
-    //  FONCTION DE METHOD UPLOAD
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Please, upload un fichier de type image.")
+     * @Assert\File(
+     *     maxSize = "3600k",
+     *     mimeTypes={ "image/*" })
+     */
+    protected $imageFile;
+
+    /**
+     * @param mixed $imageFile
+     */
+    public function setImageFile(File $file = null)
+    {
+        $this->imageFile = $file;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
 
 //  GENERATED CODE
 
@@ -30,13 +57,23 @@ class Objet
     /**
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\NotBlank(message="Please, upload un fichier de type image.")
      * @Assert\File(
-     *     maxSize
-     *      = "2048k",
-     *     mimeTypes={ "image/jpeg", "image/jpg", "image/png" })
+     *     maxSize = "3600k",
+     *     mimeTypes={ "image/*" })
      */
     private $source;
+
+    public function getSource()
+    {
+        return $this->source;
+    }
+    public function setSource($source)
+    {
+        $this->source = $source;
+
+        return $this;
+    }
 
     /**
      * @var string
@@ -75,28 +112,7 @@ class Objet
         return $this->id;
     }
 
-    /**
-     * Set source
-     *
-     * @param string $source
-     * @return Objet
-     */
-    public function setSource($source)
-    {
-        $this->source = $source;
 
-        return $this;
-    }
-
-    /**
-     * Get source
-     *
-     * @return string 
-     */
-    public function getSource()
-    {
-        return $this->source;
-    }
 
     /**
      * Set alt
