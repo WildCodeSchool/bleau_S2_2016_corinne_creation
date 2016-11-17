@@ -23,11 +23,10 @@ class EventType extends AbstractType
                     'input' => 'datetime',
                     'widget' => 'single_text'))
 
-            ->add('dateFin', 'date',  array(
-                'widget' => 'single_text',
-                'input' => 'datetime',
-                'format' => 'dd/MM/yyyy',
-            ))
+            ->add('dateFin', 'date',
+                array(
+                    'input' => 'datetime',
+                    'widget' => 'single_text'))
 
             ->add('lieu')
             ->add('file', 'file', array('label' => 'Image  (JPG)', 'required' => false))

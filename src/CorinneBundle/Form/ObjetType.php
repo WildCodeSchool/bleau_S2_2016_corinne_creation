@@ -19,10 +19,7 @@ class ObjetType extends AbstractType
             ->add('definition')
             ->add('sousCateg')
             ->add('categ')
-            ->add('slider', CheckboxType::class, array(
-                'label'    => 'Ajouter au carousel',
-                'required' => false,
-            ))
+            ->add('slider', CheckboxType::class, array('label' => 'Ajouter au carousel', 'required' => false))
             ->add('source', FileType::class, array('label' => 'Image (fichier JPG)', 'data_class' => null))
             ->add('alt')
         ;
