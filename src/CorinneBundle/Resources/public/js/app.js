@@ -3,7 +3,7 @@
 // ********************************************************************
 jQuery(document).ready(function($) {
 
-    console.log('jQuery de app.js a démarré');
+    console.log('jQuery de app.js a démarré julien test');
     init_corinne();
     gestionSlider();
     autoplay();
@@ -23,6 +23,9 @@ jQuery(document).ready(function($) {
     //FONTION CASE A COCHER
     // initialisation des listbox (select)
     selecteur();
+
+    // ZOOM SUR IMAGE
+    zoomer();
 
 });
 
@@ -169,7 +172,7 @@ function animonscroll() {
 }
 
 // ********************************************************************
-// *
+// *                    material select
 // ********************************************************************
 
 
@@ -177,5 +180,26 @@ function selecteur() {
 
     // console.log('ma fonction')
     $('select').material_select();
+
+}
+
+// ********************************************************************
+// *                    ZOOM IMAGE
+// ********************************************************************
+
+function zoomer() {
+
+    console.log('ma fonction zoom');
+
+    $('#zoom_07').elevateZoom({
+        zoomType				: "inner",
+        cursor: "crosshair"
+    });
+
+    /*$('#zoom_07').elevateZoom({
+        zoomType : "lens",
+        lensShape : "round",
+        lensSize : 200
+    });*/
 
 }
