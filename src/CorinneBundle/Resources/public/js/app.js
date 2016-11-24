@@ -191,15 +191,19 @@ function zoomer() {
 
     console.log('ma fonction zoom');
 
-    $('#zoom_07').elevateZoom({
+    //Inner Zoom
+
+    $('#zoom_01').elevateZoom({
         zoomType				: "inner",
         cursor: "crosshair"
     });
 
-    /*$('#zoom_07').elevateZoom({
+    //Lens Zoom
+
+    $('#zoom_02').elevateZoom({
         zoomType : "lens",
         lensShape : "round",
         lensSize : 200
-    });*/
+    });
 
 }

@@ -5,7 +5,7 @@
     <ul class="grid effect-6 grid_press" id="grid">
 
         {% for presse in presses %}
-            <li><img id="zoom_07" src="{{ asset('uploads/img-presse/')}}{{ presse.source }}" alt="{{ presse.alt }}" data-zoom-image="{{ asset('uploads/img-presse/')}}{{ presse.source }}"></li>
+            <li><img id="zoom_01" src="{{ asset('uploads/img-presse/')}}{{ presse.source }}" alt="{{ presse.alt }}" data-zoom-image="{{ asset('uploads/img-presse/')}}{{ presse.source }}"></li>
         {% endfor %}
 
     </ul>
@@ -41,15 +41,5 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 </script>
-    <script>
-        // ********************************************************************
-        // *                       Zoom image
-        // ********************************************************************
 
-        /*$("#zoom_07").elevateZoom({
-            zoomType : "lens",
-            lensShape : "round",
-            lensSize : 200
-        });*/
-    </script>
 {% endblock %}
