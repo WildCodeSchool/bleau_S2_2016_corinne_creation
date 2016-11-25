@@ -3,7 +3,7 @@
 // ********************************************************************
 jQuery(document).ready(function($) {
 
-    console.log('jQuery de app.js a démarré');
+    console.log('jQuery de app.js a démarré julien test');
     init_corinne();
     gestionSlider();
     autoplay();
@@ -23,6 +23,9 @@ jQuery(document).ready(function($) {
     //FONTION CASE A COCHER
     // initialisation des listbox (select)
     selecteur();
+
+    // ZOOM SUR IMAGE
+    zoomer();
 
 });
 
@@ -169,7 +172,7 @@ function animonscroll() {
 }
 
 // ********************************************************************
-// *
+// *                    material select
 // ********************************************************************
 
 
