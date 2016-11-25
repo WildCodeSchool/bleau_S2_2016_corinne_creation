@@ -2,10 +2,13 @@
 
 
 {% block body %}
+
+    <link rel="stylesheet" type="text/css" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.css" />
+
     <ul class="grid effect-6 grid_press" id="grid">
 
         {% for presse in presses %}
-            <li><img id="{{ presse.id }}" src="{{ asset('uploads/img-presse/')}}{{ presse.source }}" alt="{{ presse.alt }}" data-zoom-image="{{ asset('uploads/img-presse/')}}{{ presse.source }}"></li>
+            <li><img id="{{ presse.id }}" class="fancybox" src="{{ asset('uploads/img-presse/')}}{{ presse.source }}" alt="{{ presse.alt }}" data-zoom-image="{{ asset('uploads/img-presse/')}}{{ presse.source }}"></li>
         {% endfor %}
 
     </ul>
@@ -40,6 +43,35 @@
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
+    </script>
+
+    // ********************************************************************
+    // *                       FANCY ZOOM
+    // ********************************************************************
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.pack.min.js"></script>
+
+    <script type="text/javascript">
+        $(function($){
+            var addToAll = false;
+            var gallery = false;
+            var titlePosition = 'inside';
+            $(addToAll ? 'img' : 'img.fancybox').each(function(){
+                var $this = $(this);
+                var title = $this.attr('title');
+                var src = $this.attr('data-big') || $this.attr('src');
+                var a = $('<a href="#" class="fancybox"></a>').attr('href', src).attr('title', title);
+                $this.wrap(a);
+            });
+            if (gallery)
+                $('a.fancybox').attr('rel', 'fancyboxgallery');
+            $('a.fancybox').fancybox({
+                titlePosition: titlePosition
+            });
+        });
+        $.noConflict();
     </script>
 
     <script>
