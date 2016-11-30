@@ -70,6 +70,7 @@ class PresseController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $presse->preUpload();
             $em = $this->getDoctrine()->getManager();
             $em->persist($presse);
             $em->flush();

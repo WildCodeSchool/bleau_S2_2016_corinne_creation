@@ -14,7 +14,7 @@
                 <div class="col s12">
                     <div class="input-field">
                         {{ form_widget(form.slider) }}
-                        {{ form_label(form.slider, "ajouter au slider ?") }}
+                        {{ form_label(form.slider, "Ajouter au slider ?") }}
                         {{ form_errors(form.slider) }}
                     </div>
                 </div>
@@ -22,9 +22,9 @@
 
             <div class="row">
                 <div class="col s12">
-                    {{  form_label(form.source, "choisissez une image") }}
-                    {{ form_widget(form.source) }}
-                    {{ form_errors(form.source) }}
+                    {{  form_label(form.file, "Choisissez une image") }}
+                    {{ form_widget(form.file) }}
+                    {{ form_errors(form.file) }}
                 </div>
             </div>
 
@@ -42,7 +42,7 @@
                 <div class="col s12">
                     <div class="input-field">
                         <label>Descritpion de l'oeuvre</label>
-                        {{ form_widget(form.definition) }}
+                        {{ form_widget(form.definition, {'attr': {'class': 'materialize-textarea'}}) }}
                         {{ form_errors(form.definition) }}
                     </div>
                 </div>
@@ -82,4 +82,3 @@
         </div>
 
 {% endblock %}
-

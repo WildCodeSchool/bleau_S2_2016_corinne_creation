@@ -38,6 +38,7 @@
             <tr>
                 <th>Nom de l'évènement</th>
                 <th>Lieu de l'évènement</th>
+                <th>Date de l'évènement</th>
                 <th>Image</th>
                 <th>Action</th>
             </tr>
@@ -48,6 +49,9 @@
                 <tr>
                     <td>{{ event.titre }}</td>
                     <td>{{ event.lieu }}</td>
+                    <td>
+                        <strong>Début: </strong>{{ event.dateDebut|date("d/m/Y") }} <br>
+                        <strong>Fin: </strong>{{ event.dateFin|date("d/m/Y") }}</td>
                     <td>
                         <img src="{{ asset('uploads/img-event/')}}{{ event.source }}" class="img-eco">
                     </td>

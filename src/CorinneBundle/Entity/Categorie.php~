@@ -21,9 +21,9 @@ class Categorie
     /**
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\NotBlank(message="Please, upload un fichier de type image.")
      * @Assert\File(
-     *     maxSize = "600k",
+     *     maxSize = "3600k",
      *     mimeTypes={ "image/*" })
      */
     private $source;

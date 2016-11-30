@@ -18,15 +18,9 @@ class EventType extends AbstractType
             ->add('titre')
             ->add('descriptif', 'textarea')
 
-            ->add('dateDebut', 'date',
-                array(
-                    'input' => 'datetime',
-                    'widget' => 'single_text'))
+            ->add('dateDebut', 'date')
 
-            ->add('dateFin', 'date',
-                array(
-                    'input' => 'datetime',
-                    'widget' => 'single_text'))
+            ->add('dateFin', 'date')
 
             ->add('lieu')
             ->add('file', 'file', array('label' => 'Image  (JPG)', 'required' => false))

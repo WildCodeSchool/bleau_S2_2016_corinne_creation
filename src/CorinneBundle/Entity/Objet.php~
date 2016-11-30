@@ -4,6 +4,7 @@ namespace CorinneBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
@@ -16,25 +17,17 @@ class Objet
     {
         return strval($this->id);
     }
-    //  FONCTION DE METHOD UPLOAD
+
 
 //  GENERATED CODE
-
 
     /**
      * @var integer
      */
     private $id;
 
-
     /**
-     * @ORM\Column(type="string")
-     *
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
-     * @Assert\File(
-     *     maxSize
-     *      = "2048k",
-     *     mimeTypes={ "image/jpeg", "image/jpg", "image/png" })
+     * @var string
      */
     private $source;
 
@@ -54,21 +47,20 @@ class Objet
     private $slider;
 
     /**
-     * @var \CorinneBundle\Entity\Categorie
-     */
-    private $categ;
-
-    /**
      * @var \CorinneBundle\Entity\SousCategorie
      */
     private $sousCateg;
 
+    /**
+     * @var \CorinneBundle\Entity\Categorie
+     */
+    private $categ;
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -79,6 +71,7 @@ class Objet
      * Set source
      *
      * @param string $source
+     *
      * @return Objet
      */
     public function setSource($source)
@@ -91,7 +84,7 @@ class Objet
     /**
      * Get source
      *
-     * @return string 
+     * @return string
      */
     public function getSource()
     {
@@ -102,6 +95,7 @@ class Objet
      * Set alt
      *
      * @param string $alt
+     *
      * @return Objet
      */
     public function setAlt($alt)
@@ -114,7 +108,7 @@ class Objet
     /**
      * Get alt
      *
-     * @return string 
+     * @return string
      */
     public function getAlt()
     {
@@ -125,6 +119,7 @@ class Objet
      * Set definition
      *
      * @param string $definition
+     *
      * @return Objet
      */
     public function setDefinition($definition)
@@ -137,7 +132,7 @@ class Objet
     /**
      * Get definition
      *
-     * @return string 
+     * @return string
      */
     public function getDefinition()
     {
@@ -148,6 +143,7 @@ class Objet
      * Set slider
      *
      * @param boolean $slider
+     *
      * @return Objet
      */
     public function setSlider($slider)
@@ -160,7 +156,7 @@ class Objet
     /**
      * Get slider
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getSlider()
     {
@@ -168,12 +164,37 @@ class Objet
     }
 
     /**
+     * Set sousCateg
+     *
+     * @param \CorinneBundle\Entity\SousCategorie $sousCateg
+     *
+     * @return Objet
+     */
+    public function setSousCateg(\CorinneBundle\Entity\SousCategorie $sousCateg)
+    {
+        $this->sousCateg = $sousCateg;
+
+        return $this;
+    }
+
+    /**
+     * Get sousCateg
+     *
+     * @return \CorinneBundle\Entity\SousCategorie
+     */
+    public function getSousCateg()
+    {
+        return $this->sousCateg;
+    }
+
+    /**
      * Set categ
      *
      * @param \CorinneBundle\Entity\Categorie $categ
+     *
      * @return Objet
      */
-    public function setCateg(\CorinneBundle\Entity\Categorie $categ = null)
+    public function setCateg(\CorinneBundle\Entity\Categorie $categ)
     {
         $this->categ = $categ;
 
@@ -187,34 +208,6 @@ class Objet
      */
     public function getCateg()
     {
-        return  $this->categ ;
+        return $this->categ;
     }
-
-
-    /**
-     * Set sousCateg
-     *
-     * @param \CorinneBundle\Entity\SousCategorie $sousCateg
-     * @return Objet
-     */
-    public function setSousCateg(\CorinneBundle\Entity\SousCategorie $sousCateg = null)
-    {
-        $this->sousCateg = $sousCateg;
-
-        return $this;
-    }
-
-    /**
-     * Get sousCateg
-     *
-     * @return \CorinneBundle\Entity\SousCategorie 
-     */
-    public function getSousCateg()
-    {
-        return  $this->sousCateg;
-    }
-
-
-
-
 }

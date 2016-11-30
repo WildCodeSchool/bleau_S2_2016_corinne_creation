@@ -17,7 +17,7 @@ class CategorieType extends AbstractType
     {
         $builder
             ->add('nomcat', 'text', array("label" => 'Nom de la categorie'))
-            ->add('source', FileType::class, array('label' => 'Image (fichier JPG)', 'data_class' => null))
+            ->add('source', FileType::class, array('label' => 'Image (fichier JPG)', 'data_class' => null, 'required' => false))
             ->add('alt')
         ;
     }

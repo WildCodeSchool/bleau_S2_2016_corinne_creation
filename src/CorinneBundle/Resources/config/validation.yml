@@ -1,12 +1,7 @@
 CorinneBundle\Entity\Objet:
     properties:
-        source:
+        file:
             - File:
                 maxSize: 3512k
-                mimeTypesMessage: merci de chargez une image valide
-                mimeTypes: [image/*]
-        imageFile:
-            - File:
-                maxSize: 3512k
-                mimeTypesMessage: merci de chargez une image valide
+                mimeTypesMessage: Merci de chargez une image valide
                 mimeTypes: [image/*]
