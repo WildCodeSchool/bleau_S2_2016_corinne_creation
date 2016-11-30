@@ -78,7 +78,7 @@ class SousCategorieController extends Controller
                 'Sous catégorie modifiée avec succès'
             );
 
-            return $this->redirectToRoute('souscategorie_edit', array('id' => $sousCategorie->getId()));
+            return $this->redirectToRoute('souscategorie_index');
         }
 
         return $this->render('@Corinne/admin/souscategorie/edit.html.twig', array(

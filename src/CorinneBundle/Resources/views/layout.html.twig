@@ -101,8 +101,17 @@
     <footer class="container">
         <div class="row">
             <div class="col l12 s12">
-                <p class="text-copyright"><a href="{{ path('admin_index') }} " style="color:white">©</a> Copyright all rights reserved - design by <a href="{{ asset('http://www.wildcodeschool.fr') }}" style="color:white"><span id="wild">&nbsp; Wild Code School.</span></a><a href="{{ path('corinne_mention') }} " style="color:white"><span id="">&nbsp; Mention Légales.</span></a></p>
-                    <img src="{{ asset('bundles/corinne/images/logo-made-in-france.png') }}" alt="made in france" class="right right-size-mif">
+                <p class="text-copyright">
+                    <a href="{{ path('admin_index') }} " style="color:white">©</a>
+                    Copyright all rights reserved - design by
+                    <a href="{{ asset('http://www.wildcodeschool.fr') }}" style="color:white">
+                        <span id="wild">&nbsp; Wild Code School.</span>
+                    </a>
+                    <a href="{{ path('corinne_mention') }}" style="color:white">
+                        <span id="">&nbsp; Mentions Légales.</span>
+                    </a>
+                </p>
+                <img src="{{ asset('bundles/corinne/images/logo-made-in-france.png') }}" alt="made in france" class="right right-size-mif">
 
                 <!-- Load Facebook SDK for JavaScript -->
                 <iframe src="http://www.facebook.com/plugins/like.php?href=https://www.facebook.com/corinnecreationservauville/?fref=tspage.html&layout=button&show_faces=true&width=65&action=like&font=arial&colorscheme=light&height=65"

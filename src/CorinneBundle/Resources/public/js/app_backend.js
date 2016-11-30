@@ -25,5 +25,7 @@ function selecteur() {
     // console.log('ma fonction')
     $('select').material_select();
 
-
 }
+$(document).ready(function() {
+    $('.textarea').trigger('materialize-textarea');
+});

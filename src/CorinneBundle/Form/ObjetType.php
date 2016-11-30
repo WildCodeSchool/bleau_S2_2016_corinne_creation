@@ -16,11 +16,11 @@ class ObjetType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('definition')
+            ->add('definition', 'textarea')
             ->add('sousCateg')
             ->add('categ')
             ->add('slider', CheckboxType::class, array('label' => 'Ajouter au carousel', 'required' => false))
-            ->add('source', FileType::class, array('label' => 'Image (fichier JPG)', 'data_class' => null))
+            ->add('file', 'file', array('label' => 'Image (fichier JPG)', 'data_class' => null, 'required' => false))
             ->add('alt')
         ;
     }

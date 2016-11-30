@@ -71,13 +71,13 @@ class Event
         return null === $this->source ? null : $this->getUploadRootDir().'/'.$this->source;
     }
 
-//    public function __construct ()
-//    {
-//        $this->dateDebut = new \DateTime();
-//        $this->dateFin = new \DateTime();
-//    }
+    public function __construct ()
+    {
+        $this->dateDebut = new \DateTime();
+        $this->dateFin = new \DateTime();
+    }
 
-//     CODE GENERER
+//     CODE GENERATED
     /**
      * @var integer
      */
@@ -103,6 +103,9 @@ class Event
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="action_date", type="datetime", precision=0)
+     *
      */
     private $dateFin;
 

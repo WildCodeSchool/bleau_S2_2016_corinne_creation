@@ -41,23 +41,6 @@ class ObjetController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // $file stores the uploaded PDF file
-//            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-            $file = $objet->getSource();
-
-            // Generate a unique name for the file before saving it
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-
-            // Move the file to the directory where brochures are stored
-            $file->move(
-                $this->getParameter('pictures_directory'),
-                $fileName
-            );
-
-            // Update the 'brochure' property to store the PDF file name
-            // instead of its contents
-            $objet->setImageFile($fileName);
-
             $objet->setCateg($objet->getSousCateg()->getCategorie());
 
             $em = $this->getDoctrine()->getManager();
@@ -90,28 +73,7 @@ class ObjetController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
-            $fileName = 'uploads/pictures/' . $objet->getSource();
-            if(file_exists($fileName)) {
-                unlink($fileName);
-            }
-
-
-            // $file stores the uploaded PDF file
-//            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-            $file = $objet->getSource();
-
-            // Generate a unique name for the file before saving it
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-
-            // Move the file to the directory where brochures are stored
-            $file->move(
-                $this->getParameter('pictures_directory'),
-                $fileName
-            );
-
-            // Update the 'brochure' property to store the PDF file name
-            // instead of its contents
-            $objet->setSource($fileName);
+            $objet->preUpload();
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($objet);
@@ -139,10 +101,6 @@ class ObjetController extends Controller
     public function deleteAction($id){
         $em = $this->getDoctrine()->getManager();
         $objet = $em->getRepository('CorinneBundle:Objet')->findOneById($id);
-        $fileName = 'uploads/pictures/' . $objet->getSource();
-        if(file_exists($fileName)) {
-            unlink($fileName);
-        }
         $em->remove($objet);
         $em->flush();
 

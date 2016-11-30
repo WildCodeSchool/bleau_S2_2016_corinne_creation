@@ -18,62 +18,79 @@ class Objet
         return strval($this->id);
     }
 
-    /**
-     * @ORM\Column(type="string")
-     *
-     * @Assert\NotBlank(message="Please, upload un fichier de type image.")
-     * @Assert\File(
-     *     maxSize = "3600k",
-     *     mimeTypes={ "image/*" })
-     */
-    protected $imageFile;
+    //  FONCTION DE METHOD UPLOAD
+    public $file;
 
     /**
-     * @param mixed $imageFile
+     * @ORM\PrePersist
      */
-    public function setImageFile(File $file = null)
+    public function preUpload()
     {
-        $this->imageFile = $file;
+        if (null !== $this->file) {
+            // do whatever you want to generate a unique name
+            $this->source = uniqid().'.'.$this->file->guessExtension();
+        }
     }
 
     /**
-     * @return mixed
+     * @ORM\PostPersist
      */
-    public function getImageFile()
+    public function upload()
     {
-        return $this->imageFile;
+        if (null === $this->file) {
+            return;
+        }
+
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->file->move($this->getUploadRootDir(), $this->source);
+
+        unset($this->file);
     }
 
+    /**
+     * @ORM\PostRemove
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
+    }
+
+    //  FONCTION DE TEST DU DOSSIER UPLOAD
+    protected function getUploadDir()
+    {
+        return 'uploads/pictures';
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->source ? null : $this->getUploadDir().'/'.$this->source;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->source ? null : $this->getUploadRootDir().'/'.$this->source;
+    }
 
 //  GENERATED CODE
-
 
     /**
      * @var integer
      */
     private $id;
 
-
     /**
-     * @ORM\Column(type="string")
-     *
-     * @Assert\NotBlank(message="Please, upload un fichier de type image.")
-     * @Assert\File(
-     *     maxSize = "3600k",
-     *     mimeTypes={ "image/*" })
+     * @var string
      */
     private $source;
-
-    public function getSource()
-    {
-        return $this->source;
-    }
-    public function setSource($source)
-    {
-        $this->source = $source;
-
-        return $this;
-    }
 
     /**
      * @var string
@@ -91,33 +108,55 @@ class Objet
     private $slider;
 
     /**
-     * @var \CorinneBundle\Entity\Categorie
-     */
-    private $categ;
-
-    /**
      * @var \CorinneBundle\Entity\SousCategorie
      */
     private $sousCateg;
 
+    /**
+     * @var \CorinneBundle\Entity\Categorie
+     */
+    private $categ;
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * Set source
+     *
+     * @param string $source
+     *
+     * @return Objet
+     */
+    public function setSource($source)
+    {
+        $this->source = $source;
 
+        return $this;
+    }
+
+    /**
+     * Get source
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return $this->source;
+    }
 
     /**
      * Set alt
      *
      * @param string $alt
+     *
      * @return Objet
      */
     public function setAlt($alt)
@@ -130,7 +169,7 @@ class Objet
     /**
      * Get alt
      *
-     * @return string 
+     * @return string
      */
     public function getAlt()
     {
@@ -141,6 +180,7 @@ class Objet
      * Set definition
      *
      * @param string $definition
+     *
      * @return Objet
      */
     public function setDefinition($definition)
@@ -153,7 +193,7 @@ class Objet
     /**
      * Get definition
      *
-     * @return string 
+     * @return string
      */
     public function getDefinition()
     {
@@ -164,6 +204,7 @@ class Objet
      * Set slider
      *
      * @param boolean $slider
+     *
      * @return Objet
      */
     public function setSlider($slider)
@@ -176,7 +217,7 @@ class Objet
     /**
      * Get slider
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getSlider()
     {
@@ -184,12 +225,37 @@ class Objet
     }
 
     /**
+     * Set sousCateg
+     *
+     * @param \CorinneBundle\Entity\SousCategorie $sousCateg
+     *
+     * @return Objet
+     */
+    public function setSousCateg(\CorinneBundle\Entity\SousCategorie $sousCateg)
+    {
+        $this->sousCateg = $sousCateg;
+
+        return $this;
+    }
+
+    /**
+     * Get sousCateg
+     *
+     * @return \CorinneBundle\Entity\SousCategorie
+     */
+    public function getSousCateg()
+    {
+        return $this->sousCateg;
+    }
+
+    /**
      * Set categ
      *
      * @param \CorinneBundle\Entity\Categorie $categ
+     *
      * @return Objet
      */
-    public function setCateg(\CorinneBundle\Entity\Categorie $categ = null)
+    public function setCateg(\CorinneBundle\Entity\Categorie $categ)
     {
         $this->categ = $categ;
 
@@ -203,34 +269,6 @@ class Objet
      */
     public function getCateg()
     {
-        return  $this->categ ;
+        return $this->categ;
     }
-
-
-    /**
-     * Set sousCateg
-     *
-     * @param \CorinneBundle\Entity\SousCategorie $sousCateg
-     * @return Objet
-     */
-    public function setSousCateg(\CorinneBundle\Entity\SousCategorie $sousCateg = null)
-    {
-        $this->sousCateg = $sousCateg;
-
-        return $this;
-    }
-
-    /**
-     * Get sousCateg
-     *
-     * @return \CorinneBundle\Entity\SousCategorie 
-     */
-    public function getSousCateg()
-    {
-        return  $this->sousCateg;
-    }
-
-
-
-
 }
