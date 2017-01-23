@@ -23,6 +23,6 @@ CorinneBundle\Entity\SousCategorie:
     oneToMany:
         objet:
             targetEntity: CorinneBundle\Entity\Objet
-            mappedBy: souscategorie
+            mappedBy: sousCateg
             nullable: false
     lifecycleCallbacks: {  }
