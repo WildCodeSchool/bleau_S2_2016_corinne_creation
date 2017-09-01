@@ -25,7 +25,7 @@ CorinneBundle\Entity\Categorie:
             nullable: false
         objet:
             targetEntity: CorinneBundle\Entity\Objet
-            mappedBy: categorie
+            mappedBy: categ
             nullable: false
 
     lifecycleCallbacks: {  }
